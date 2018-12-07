@@ -26,6 +26,13 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         textViewPlayer1 = findViewById(R.id.text_view_p1);
         textViewPlayer2 = findViewById(R.id.text_view_p2);
 
+        Intent intent = getIntent();
+        String dato = intent.getStringExtra("dato");
+        String dato2 = intent.getStringExtra("dato2");
+
+        textViewPlayer1.setText(dato + ": 0");
+        textViewPlayer2.setText(dato2 + ": 0");
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 String buttonID = "button_" + i + j;
@@ -116,7 +123,10 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         Intent intent = getIntent();
         String dato = intent.getStringExtra("dato");
         player1Points++;
+        if (player1Points == 3) {
         Toast.makeText(this, dato + " gana!", Toast.LENGTH_SHORT).show();
+        resetGame();
+        }
         updatePointsText();
         resetBoard();
     }
@@ -125,7 +135,10 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         Intent intent = getIntent();
         String dato2 = intent.getStringExtra("dato2");
         player2Points++;
+        if (player2Points == 3) {
         Toast.makeText(this, dato2 + " gana!", Toast.LENGTH_SHORT).show();
+        resetGame();
+        }
         updatePointsText();
         resetBoard();
     }
